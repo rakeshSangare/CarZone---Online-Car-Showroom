@@ -1,0 +1,26 @@
+{% if messages %}
+    <!-- Check if there are messages to display -->
+    {% for message in messages %}
+        <!-- Iterate over each message -->
+        <div class="container" id="message">
+            <!-- Container for each message -->
+            <div class="alert alert-{{ message.tags }}" alert-dismissable role="alert">
+                <!-- Display message with appropriate CSS class based on message tags -->
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                <!-- Close button for dismissing the message -->
+
+                <strong>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <!-- Check if message level is ERROR -->
+                        Error:
+                    {% else %}
+                        <!-- If not an error, display message tags (title-cased) -->
+                        {{message.tags|title}}
+                    {% endif %}
+                </strong>
+                <!-- Display the message itself -->
+                {{message}}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
